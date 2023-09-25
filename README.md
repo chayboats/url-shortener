@@ -1,35 +1,65 @@
-# url-shortener
+# URL Shortening API Landing Page
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to my URL Shortening API Landing Page project! This project was created as a response to the challenge provided by [Frontend Mentor](https://www.frontendmentor.io/challenges/url-shortening-api-landing-page-2ce3ob-G).
 
-## Recommended IDE Setup
+_Desktop Design_
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+_Mobile Design_
 
-## Customize configuration
+## Features
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Shorten long URLs into more manageable links.
+- View a list of previously shortened URLs.
+- Easily copy shortened URLs to the clipboard.
+- Responsive design for seamless use on various devices.
+- Utilizes the provided URL shortening API for functionality.
 
-## Project Setup
+## Getting Started
 
-```sh
+Follow these steps to get a local copy of the project up and running:
+
+1. Clone this repository to your local machine:
+
+```bash
+git clone https://github.com/your-username/url-shortening-app.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd url-shortening-app
+```
+
+3. Open the project in your code editor.
+
+4. Install the required dependencies:
+
+```bash
 npm install
 ```
+5. Start the development server:
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
+```bash
+npm run serve
 ```
+6. Open your web browser and access the app at in localhost.
 
-### Compile and Minify for Production
+## Technologies
+- Vue.js
+- HTML5
+- CSS
+- Axios (for API requests)
 
-```sh
-npm run build
-```
+## Acknowledgements
+- Design and API provided by [Frontend Mentor](https://www.frontendmentor.io/home)
+- Icons from [Font Awesome](https://fontawesome.com/)
 
-### Lint with [ESLint](https://eslint.org/)
+## Contact Me
 
-```sh
-npm run lint
-```
+If you have any questions, comments, or suggestions, please don't hesitate to reach out. I'd love to hear from you!
+
+**Chaley Boatmon**
+- Email: **<u>chaleyboatmon@gmail.com</u>**
+- GitHub: [<u>**chayboats**</u>](https://github.com/chayboats)
+  
+Thank you for visiting my repository!
