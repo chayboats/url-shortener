@@ -34,16 +34,24 @@ import { Columns, Stack, Button } from '@/components'
     max-width: 25rem;
     padding-bottom: var(--space-lg);
   }
-  .get-started {
+  
+  .get-started,
+  .person-working {
     margin: auto;
   }
   .hero-content {
-    padding: 0 var(--space-sm);
+    padding: 0;
     min-width: min-content;
   }
 
   .hero {
     justify-content: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .person-working {
+    max-width: 20rem;
   }
 }
 </style>
