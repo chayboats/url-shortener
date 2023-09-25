@@ -4,7 +4,13 @@ Welcome to my URL Shortening API Landing Page project! This project was created 
 
 _Desktop Design_
 
+
+https://github.com/chayboats/url-shortener/assets/107378002/404ca52a-493a-4441-9671-497d9f633ff4
+
+
 _Mobile Design_
+<img width="213" alt="Pasted Graphic" src="https://github.com/chayboats/url-shortener/assets/107378002/bcea0916-6842-4865-9a8d-e3d9b6905a1f">
+
 
 ## Features
 
