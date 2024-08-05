@@ -27,9 +27,19 @@ const error = ref(false)
 const input = ref(undefined)
 
 async function fetchLink(urlInput) {
-  const link = await fetch(`https://api.shrtco.de/v2/shorten?url=${urlInput}`)
-  const jsonLink = await link.json()
-  return jsonLink.result.short_link
+  const options = {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_URL_SHORTENER_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ long_url: urlInput })
+  }
+
+  const result = await fetch('https://api-ssl.bitly.com/v4/shorten', options)
+  const jsonResult = await result.json()
+
+  return jsonResult.link
 }
 
 async function handleSubmit(urlInput) {
