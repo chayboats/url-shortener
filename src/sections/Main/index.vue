@@ -36,22 +36,40 @@ async function fetchLink(urlInput) {
     body: JSON.stringify({ long_url: urlInput })
   }
 
-  const result = await fetch('https://api-ssl.bitly.com/v4/shorten', options)
-  const jsonResult = await result.json()
-
-  return jsonResult.link
+  try {
+    const result = await fetch('https://api-ssl.bitly.com/v4/shorten', options)
+    const jsonResult = await result.json()
+    return jsonResult
+  } catch (err) {
+    error.value = true
+  }
 }
 
 async function handleSubmit(urlInput) {
   try {
-    const shortLink = await fetchLink(urlInput)
-    links.value.push({ longLink: urlInput, shortLink })
+    const longLink = await fetchLink(urlInput)
+    const keys = Object.keys(longLink)
+
+    if (keys.includes('errors')) {
+      setErrorMessage(longLink, urlInput)
+      return
+    }
+
+    links.value.push({ longLink: urlInput, shortLink: longLink.link })
     localStorage.setItem('links', JSON.stringify(links.value))
   } catch (err) {
     error.value = true
   } finally {
     resetInput()
   }
+}
+
+function setErrorMessage(result, url) {
+  if (url === '') {
+    error.value = 'Add a link'
+    return
+  }
+  error.value = result.description + ' http://example.com'
 }
 
 function getLocalLinks() {

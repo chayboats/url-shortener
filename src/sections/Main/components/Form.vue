@@ -11,19 +11,18 @@
           @click="$emit('click')"
         />
         <Button style="width: 100%" class="btn-large">Shorten It!</Button>
-        <span class="error-msg">Please add a link</span>
+        <span class="error-msg">{{ error }}</span>
       </Columns>
     </form>
   </Row>
 </template>
 
 <script setup>
-
 import { Row, Columns, Button } from '@/components'
 import { ref } from 'vue'
 
 defineProps({
-  error: { type: Boolean, default: false }
+  error: { type: [Boolean, String], default: false }
 })
 
 defineEmits(['submit', 'click'])
