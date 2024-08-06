@@ -1,6 +1,6 @@
 <template>
   <Stack class="main">
-    <Form :error="error" @submit="handleSubmit" @click="resetError" />
+    <Form v-model="urlInput" :error="error" @submit="handleSubmit" @click="resetError" />
     <Stack reverse class="links">
       <Link
         v-for="link in links"
@@ -24,16 +24,16 @@ import { Stack } from '@/components'
 
 const links = ref(JSON.parse(getLocalLinks()))
 const error = ref(false)
-const input = ref(undefined)
+const urlInput = ref('')
 
-async function fetchLink(urlInput) {
+async function fetchLink() {
   const options = {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_URL_SHORTENER_KEY}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ long_url: urlInput })
+    body: JSON.stringify({ long_url: urlInput.value })
   }
 
   try {
@@ -45,31 +45,27 @@ async function fetchLink(urlInput) {
   }
 }
 
-async function handleSubmit(urlInput) {
+async function handleSubmit() {
   try {
-    const longLink = await fetchLink(urlInput)
+    const longLink = await fetchLink()
     const keys = Object.keys(longLink)
-
-    if (keys.includes('errors')) {
-      setErrorMessage(longLink, urlInput)
-      return
+    if (!keys.includes('errors')) {
+      links.value.push({ longLink: urlInput.value, shortLink: longLink.link })
+      localStorage.setItem('links', JSON.stringify(links.value))
+      resetInput()
+    } else {
+      error.value = setErrorMessage(longLink, urlInput.value)
     }
-
-    links.value.push({ longLink: urlInput, shortLink: longLink.link })
-    localStorage.setItem('links', JSON.stringify(links.value))
   } catch (err) {
     error.value = true
-  } finally {
-    resetInput()
   }
 }
 
 function setErrorMessage(result, url) {
-  if (url === '') {
-    error.value = 'Add a link'
-    return
-  }
-  error.value = result.description + ' http://example.com'
+  const empty = 'Add a link'
+  const invalid = result.description + ' http://example.com'
+
+  return url === '' ? empty : invalid
 }
 
 function getLocalLinks() {
@@ -86,13 +82,7 @@ function resetError() {
 }
 
 function resetInput() {
-  if (!input.value) {
-    input.value = document.getElementById('url-input')
-  }
-  if (!error.value) {
-    input.value.value = ''
-  }
-  input.value.blur()
+  urlInput.value = ''
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <Row class="form-background">
-    <form @submit.prevent="$emit('submit', urlInput)">
+    <form @submit.prevent="$emit('submit')">
       <Columns columns="20fr 1fr" gap="var(--space-xs) var(--space-sm)">
         <input
           id="url-input"
@@ -19,7 +19,6 @@
 
 <script setup>
 import { Row, Columns, Button } from '@/components'
-import { ref } from 'vue'
 
 defineProps({
   error: { type: [Boolean, String], default: false }
@@ -27,7 +26,7 @@ defineProps({
 
 defineEmits(['submit', 'click'])
 
-const urlInput = ref('')
+const urlInput = defineModel()
 </script>
 
 <style scoped>
